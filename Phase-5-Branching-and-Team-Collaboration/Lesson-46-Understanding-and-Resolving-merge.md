@@ -149,4 +149,131 @@ Attempts to cancel the merge and restore the pre-merge state.
 7. Stage the resolved files using `git add`.
 8. Check the repository status.
 9. Complete the merge using `git commit`.
+## 8. Practical Exercise
 
+### Scenario
+
+Two developers independently modify the same announcement.
+
+Developer A:
+
+```text
+Welcome to our Git learning community!
+```
+
+Developer B:
+
+```text
+Welcome to our software engineering community!
+```
+
+### Step 1: Create Developer A's branch
+
+```bash
+git switch main
+git switch -c conflict-practice-a
+```
+
+Create `message.txt`:
+
+```text
+Welcome to our Git learning community!
+```
+
+Commit:
+
+```bash
+git add .
+git commit -m "Add original community announcement"
+```
+
+### Step 2: Create Developer B's branch
+
+```bash
+git switch main
+git switch -c conflict-practice-b
+```
+
+Change `message.txt` to:
+
+```text
+Welcome to our software engineering community!
+```
+
+Commit:
+
+```bash
+git add .
+git commit -m "Update community announcement"
+```
+
+### Step 3: Create a conflict
+
+```bash
+git switch conflict-practice-a
+git merge conflict-practice-b
+```
+
+Git should report a merge conflict.
+
+### Step 4: Inspect the conflict
+
+```bash
+git status
+```
+
+Open `message.txt` and inspect the conflict markers.
+
+### Step 5: Resolve the conflict
+
+Choose the final content:
+
+```text
+Welcome to our Git and software engineering learning community!
+```
+
+Remove all conflict markers.
+
+### Step 6: Stage the resolved file
+
+```bash
+git add 05-Branching-and-Collaboration/message.txt
+```
+
+### Step 7: Complete the merge
+
+```bash
+git commit -m "Resolve community announcement merge conflict"
+```
+
+### Step 8: Inspect the history
+
+```bash
+git log --oneline --graph --all
+```
+
+Observe the merge commit and the two development branches.
+
+## 9. Key Takeaways
+
+- Merge conflicts happen when Git cannot automatically combine competing changes.
+- Editing the same file does not always create a conflict.
+- Git uses three-way merging.
+- Conflict markers identify competing content.
+- Developers must manually decide the final content.
+- `git add` marks resolved files as staged.
+- `git merge --abort` cancels an ongoing merge.
+- A successful conflict resolution can be completed with a merge commit.
+
+## 10. Lesson Completion Checklist
+
+- [ ] Understand merge conflicts.
+- [ ] Identify common causes.
+- [ ] Understand conflict markers.
+- [ ] Explain three-way merging.
+- [ ] Create a merge conflict.
+- [ ] Resolve the conflict manually.
+- [ ] Complete the merge.
+- [ ] Inspect the commit history.
+
+**Next Lesson:** Understanding Merge Conflicts During Rebasing and How to Resolve Them.
