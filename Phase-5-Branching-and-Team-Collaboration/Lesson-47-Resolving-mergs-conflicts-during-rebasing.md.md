@@ -143,3 +143,145 @@ Skips the commit currently being replayed. This omits its changes from the resul
 ```bash
 git rebase --abort
 ```
+
+Cancels the ongoing rebase and attempts to restore the original branch state.
+
+## 7. Merge Conflicts vs Rebase Conflicts
+
+| Merge | Rebase |
+|---|---|
+| Combines branch histories | Replays commits |
+| Uses `git merge` | Uses `git rebase` |
+| Resolve conflicts and stage files | Resolve conflicts and stage files |
+| Complete using `git commit` | Continue using `git rebase --continue` |
+| Can create a merge commit | Recreates commits with new identities |
+
+## 8. Practical Exercise
+
+### Step 1: Create a base branch
+
+```bash
+git switch main
+git switch -c rebase-practice-main
+```
+
+Create `rebase-message.txt`:
+
+```text
+Welcome to our Git learning community!
+```
+
+Commit:
+
+```bash
+git add rebase-message.txt
+git commit -m "Add original rebase practice message"
+```
+
+### Step 2: Create a feature branch
+
+```bash
+git switch -c rebase-practice-feature
+```
+
+Change the file:
+
+```text
+Welcome to our software engineering community!
+```
+
+Commit:
+
+```bash
+git add rebase-message.txt
+git commit -m "Update message from feature branch"
+```
+
+### Step 3: Update the base branch
+
+```bash
+git switch rebase-practice-main
+```
+
+Change the same file:
+
+```text
+Welcome to our updated Git community!
+```
+
+Commit:
+
+```bash
+git add rebase-message.txt
+git commit -m "Update message from main branch"
+```
+
+### Step 4: Start the rebase
+
+```bash
+git switch rebase-practice-feature
+git rebase rebase-practice-main
+```
+
+Git should report a conflict.
+
+### Step 5: Inspect the conflict
+
+```bash
+git status
+```
+
+Open the affected file and examine the competing versions.
+
+### Step 6: Resolve the conflict
+
+Choose the final content:
+
+```text
+Welcome to our updated Git and software engineering community!
+```
+
+Remove conflict markers and save.
+
+### Step 7: Stage the resolved file
+
+```bash
+git add rebase-message.txt
+```
+
+### Step 8: Continue the rebase
+
+```bash
+git rebase --continue
+```
+
+### Step 9: Inspect the commit history
+
+```bash
+git log --oneline --graph --all
+```
+
+Observe how the feature commit has been replayed onto the updated base branch.
+
+## 9. Key Takeaways
+
+- Rebase replays commits onto another branch.
+- Conflicts occur when Git cannot automatically apply a commit.
+- Rebase can encounter multiple conflicts during the same operation.
+- `git rebase --continue` resumes the operation.
+- `git rebase --skip` omits the current commit.
+- `git rebase --abort` cancels the operation.
+- Rebasing changes commit identities.
+- Avoid rebasing shared branches without coordinating with teammates.
+
+## 10. Lesson Completion Checklist
+
+- [ ] Understand Git rebase.
+- [ ] Explain why rebase conflicts happen.
+- [ ] Identify conflict markers.
+- [ ] Create a rebase conflict.
+- [ ] Resolve the conflict manually.
+- [ ] Continue the rebase.
+- [ ] Inspect the final commit history.
+
+**Next Lesson:** Understanding Detached HEAD State in Git.
