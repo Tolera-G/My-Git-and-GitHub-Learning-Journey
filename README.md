@@ -86,7 +86,7 @@ My-Git-and-GitHub-Learning-Journey/
 - [x] Phase 2 — Working with Local Git
 - [x] Phase 3 — GitHub Foundations
 - [x] Phase 4 — Remote Repositories
-- [ ] Phase 5 — Branching and Team Collaboration
+- [x] Phase 5 — Branching and Team Collaboration
 - [ ] Phase 6 — Organizations and Project Management
 - [ ] Phase 7 — Open-Source Contribution
 - [ ] Phase 8 — Professional and Advanced Workflows
