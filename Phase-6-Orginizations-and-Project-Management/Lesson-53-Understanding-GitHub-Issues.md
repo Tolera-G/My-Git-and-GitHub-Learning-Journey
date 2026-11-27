@@ -72,7 +72,6 @@ Developers can use comments to:
 - Share progress.
 - Suggest solutions.
 - Discuss implementation approaches.
-
 ## 6. Assigning Issues
 
 An issue can be assigned to one or more developers.
